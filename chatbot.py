@@ -25,19 +25,19 @@ for message in st.session_state.chat_history:
 
 # llm initiate
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     temperature=0.0,
 )
 
 # input box
-user_prompt = st.chat_input("Ask Chatbot...")
+user_prompt = st.chat_input("Ask Llama...")
 
 if user_prompt:
     st.chat_message("user").markdown(user_prompt)
     st.session_state.chat_history.append({"role": "user", "content": user_prompt})
 
     response = llm.invoke(
-        input = [{"role": "system", "content": "You are a helpful assistant"}, *st.session_state.chat_history]
+        input = [{"role": "system", "content": "You are a helpful assistant. Reply in bullet points and maximum 20 sentences."}, *st.session_state.chat_history]
     )
     assistant_response = response.content
     st.session_state.chat_history.append({"role": "assistant", "content": assistant_response})
