@@ -37,7 +37,7 @@ if user_prompt:
     st.session_state.chat_history.append({"role": "user", "content": user_prompt})
 
     response = llm.invoke(
-        input = [{"role": "system", "content": "You are a helpful assistant. Reply in bullet points and maximum 20 sentences."}, *st.session_state.chat_history]
+        input = [{"role": "system", "content": "You are a helpful assistant. Reply in bullet points and maximum 5 sentences."}, *st.session_state.chat_history]
     )
     assistant_response = response.content
     st.session_state.chat_history.append({"role": "assistant", "content": assistant_response})
